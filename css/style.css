@@ -1,0 +1,77 @@
+/* :::::::::::::::::::::::::::RESETS :::::::::::::::::::::::::::::::::::::::: */
+html, body {
+	height: 100%;
+	box-sizing: border-box;
+}
+
+body {
+	height: 100vh;
+	min-height: 100vh;
+  	margin:0; 
+}
+
+*, *::before, *::after {
+	box-sizing: inherit;
+}
+
+* {
+  font-size: 1em;
+  font-weight: 400;
+  text-decoration: none;
+  line-height: 1.2; 
+  margin: 0;
+  padding:0;  
+}
+
+ul, ol { 
+	list-style-type: none;
+}
+  
+img{
+	max-width: 100%;
+	width: auto;
+	height: auto;
+	vertical-align: bottom;
+}
+
+
+/* ------------------------------------------------------* */
+.hide {
+    display: none;
+}
+
+.loveForm {
+    border: 1em solid rgb(207, 18, 224);
+    background-color:rgb(188, 188, 253);
+    display: flex;
+    flex-direction: column;
+}
+
+.bg-loveForm {
+    border: 0.5em solid rgb(247, 242, 179);
+
+}
+
+/* ---------------------------------------------------------------- */
+
+.resultPanel{
+    display: flex;
+    flex-direction: column;
+    border: 1em solid rgb(224, 111, 18);
+    background-color:rgb(159, 159, 248);
+}
+
+.pgraphResult {
+    display: flex;
+    flex-direction: column;
+}
+
+.heart {
+    border: 0.5em solid rgb(176, 238, 184);
+    max-width: 30%;
+}
+
+.newLoveCalc{
+    /* border: 0.1em solid rgb(176, 238, 184);
+    width: fit-content; */
+}
