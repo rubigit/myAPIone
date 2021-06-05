@@ -13,22 +13,28 @@ document.addEventListener("DOMContentLoaded", function () {
 	const newCalc = document.querySelector(`#newLoveCalc`)
 	const loveResult = document.querySelector(`#resultPanel`)
 
-	const toggleForms = function () {
+	const clearForm = () => {
 		fname.value = ""
 		sname.value = ""
-		loveForm.classList.toggle(`hide`)
-		loveForm.classList.toggle(`loveForm`)
+	}
+
+	const toggleLoader = function () {
+		document.querySelector(`#loader`).classList.toggle(`hide`)
+	}
+	const toggleResult = function () {
 		loveResult.classList.toggle(`hide`)
 		loveResult.classList.toggle(`resultPanel`)
 	}
-
-	function printLoveResult(fname, sname, per, res) {
-		let srcpic = ""
-		let altpic = ""
+	const toggleForms = function () {
 		loveForm.classList.toggle(`hide`)
 		loveForm.classList.toggle(`loveForm`)
-		loveResult.classList.toggle(`hide`)
-		loveResult.classList.toggle(`resultPanel`)
+
+	}
+
+	function printLoveResult(fname, sname, per, res) {
+		toggleLoader()
+		let srcpic = ""
+		let altpic = ""
 
 		if (per <= 30) {
 			srcpic = pictures[0].picName
@@ -52,11 +58,12 @@ document.addEventListener("DOMContentLoaded", function () {
 		newLoveCalc.classList.add(`newLoveCalc`)
 		newLoveCalc.setAttribute(`id`, `newLoveCalc`)
 		newLoveCalc.innerHTML = `Make another calculation`
-		newLoveCalc.addEventListener(`click`, function () { toggleForms() })
+		newLoveCalc.addEventListener(`click`, function () { toggleForms(), toggleResult(), clearForm() })
 		loveResult.appendChild(newLoveCalc)
 	}
 
 	function calculateLove() {
+
 		fetch(`https://love-calculator.p.rapidapi.com/getPercentage?fname=${fname.value}&sname=${sname.value}`, {
 			"method": "GET",
 			"headers": {
@@ -73,10 +80,19 @@ document.addEventListener("DOMContentLoaded", function () {
 			});
 	}
 
+	function runPreLoader() {
+		let timing = ``
+		toggleLoader()
+		toggleForms()
+		timing = setTimeout(function () { toggleResult() }, 1000);
+	}
+
 	loveForm.addEventListener("submit", function (event) {
 		event.preventDefault()
 		if (fname.value && sname.value) {
+			runPreLoader()
 			calculateLove()
+			// toggleForms()
 		}
 
 	})
