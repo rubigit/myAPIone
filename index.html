@@ -9,34 +9,40 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
-
-
-<form id="loveForm" class="loveForm">
-    <header class="hderForm">
-        <div class="inputFname">
-            <label for="fname">Your Name:</label>
-            <input id="fname" type="text" value="" name="fname" placeholder="Enter your name ...">
-        </div>
-        <div class="inputSname">
-            <label for="sname">Your crush:</label>
-            <input id="sname" type="text" value="" name="sname" placeholder="Enter your crush name ...">
-        </div>
-        <input class="submit" type="submit" value="Calculate Love">
-    </header>
-    <footer class=fterForm>
-        <img class="bg-loveForm" src="./img/redheart.png" alt="">
-    </footer>
-</form>
-
-<section id="resultPanel" class="hide">
-</section>
-
-<div id="loader" class="hide">
-    <p>loading...</p>
-</div>
-
-
 <body>
+    <div class=container>
+        <div class="love-hding-bg">
+            <h1 class="love-heding">Love Calculator</h1>
+
+        </div>
+        <form id="loveForm" class="loveForm">
+            <header class="hderForm">
+
+                <section class="inp-collection">
+                    <div class="inputFname">
+                        <label for="fname" class="names">Your Name:</label>
+                        <input id="fname" class="inp-name" type="search" value="" name="fname"
+                            placeholder="Enter your name ...">
+                    </div>
+                    <div class="inputSname">
+                        <label for="sname" class="names">Your crush:</label>
+                        <input id="sname" class="inp-name" type="search" value="" name="sname"
+                            placeholder="Enter your crush name ...">
+                    </div>
+                </section>
+                <input class="submit" type="submit" value="calculate love">
+            </header>
+        </form>
+
+
+        <section id="resultPanel" class="hide">
+        </section>
+
+        <div id="loader" class="hide">
+            <img src="./img/preloading.gif" alt="">
+        </div>
+    </div>
+
     <script src="js/script.js"></script>
 </body>
 

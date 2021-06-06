@@ -2,9 +2,10 @@ document.addEventListener("DOMContentLoaded", function () {
 	console.log(`Ready`)
 
 	const pictures = [
-		{ picName: `Broken_heart.svg`, alt: `Broken_heart` },
-		{ picName: `emptyheart.svg`, alt: `emptyheart` },
-		{ picName: `redheart.png`, alt: `redheart` }
+		{ picName: `Broken_heart.png`, alt: `Brokenheart` },
+		{ picName: `emptyheart.png`, alt: `empty heart` },
+		{ picName: `happyheart.png`, alt: `happy heart` },
+		{ picName: `shappyheart.png`, alt: `super happy heart` }
 	]
 
 	const loveForm = document.querySelector(`#loveForm`)
@@ -19,7 +20,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	}
 
 	const toggleLoader = function () {
-		document.querySelector(`#loader`).classList.toggle(`hide`)
+		const lder = document.querySelector(`#loader`)
+		lder.classList.toggle(`hide`)
+		lder.classList.toggle(`loader`)
 	}
 	const toggleResult = function () {
 		loveResult.classList.toggle(`hide`)
@@ -28,6 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	const toggleForms = function () {
 		loveForm.classList.toggle(`hide`)
 		loveForm.classList.toggle(`loveForm`)
+		fname.classList.remove(`alert`)
+		sname.classList.remove(`alert`)
 
 	}
 
@@ -42,16 +47,19 @@ document.addEventListener("DOMContentLoaded", function () {
 		} else if (per <= 50) {
 			srcpic = pictures[1].picName
 			altpic = pictures[1].alt
-		} else {
+		} else if (per <= 80) {
 			srcpic = pictures[2].picName
 			altpic = pictures[2].alt
+		} else {
+			srcpic = pictures[3].picName
+			altpic = pictures[3].alt
 		}
 
 		loveResult.innerHTML = `
-		<p class="pgraphResult"><span>Percentage of love between</span><span>${fname} and ${sname}</span><span>${per}</span></p>
-		<div>
-		<img class="heart" src="./img/${srcpic}" alt="${altpic}">
+		<p class="pgraphResult"><span>Percentage of love between:</span><span><b>${fname.toUpperCase()}</b> and <b>${sname.toUpperCase()}</b></span><span class="percent">${per}%</span></p>
+		<div class="heartContainer">
 		<p>${res}</p>
+		<img class="heart" src="./img/${srcpic}" alt="${altpic}">
 		</div>
 		`
 		const newLoveCalc = document.createElement(`button`)
@@ -87,12 +95,22 @@ document.addEventListener("DOMContentLoaded", function () {
 		timing = setTimeout(function () { toggleResult() }, 1000);
 	}
 
+	function makeAlert() {
+		fname.classList.add(`alert`)
+		sname.classList.add(`alert`)
+		fname.placeholder = `*Enter your name`
+		sname.placeholder = `*Enter your crush name`
+
+	}
+
 	loveForm.addEventListener("submit", function (event) {
 		event.preventDefault()
 		if (fname.value && sname.value) {
 			runPreLoader()
 			calculateLove()
 			// toggleForms()
+		} else {
+			makeAlert()
 		}
 
 	})
